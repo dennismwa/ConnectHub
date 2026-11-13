@@ -1,0 +1,9 @@
+/* Self-hosted variable fonts (latin). Only the fonts a page actually uses are downloaded. */
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-display:swap;font-weight:200 800;src:url('../fonts/plus-jakarta-sans-latin-wght-normal.woff2') format('woff2-variations')}
+@font-face{font-family:'Inter';font-style:normal;font-display:swap;font-weight:100 900;src:url('../fonts/inter-latin-wght-normal.woff2') format('woff2-variations')}
+@font-face{font-family:'Outfit';font-style:normal;font-display:swap;font-weight:100 900;src:url('../fonts/outfit-latin-wght-normal.woff2') format('woff2-variations')}
+@font-face{font-family:'Sora';font-style:normal;font-display:swap;font-weight:100 800;src:url('../fonts/sora-latin-wght-normal.woff2') format('woff2-variations')}
+@font-face{font-family:'Manrope';font-style:normal;font-display:swap;font-weight:200 800;src:url('../fonts/manrope-latin-wght-normal.woff2') format('woff2-variations')}
+@font-face{font-family:'DM Sans';font-style:normal;font-display:swap;font-weight:100 1000;src:url('../fonts/dm-sans-latin-wght-normal.woff2') format('woff2-variations')}
+@font-face{font-family:'DM Mono';font-style:normal;font-display:swap;font-weight:400;src:url('../fonts/dm-mono-latin-400-normal.woff2') format('woff2')}
+@font-face{font-family:'DM Mono';font-style:normal;font-display:swap;font-weight:500;src:url('../fonts/dm-mono-latin-500-normal.woff2') format('woff2')}
