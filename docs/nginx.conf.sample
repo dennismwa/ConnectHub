@@ -1,0 +1,23 @@
+# ConnectHub on Nginx + PHP-FPM (adjust server_name, root and fastcgi_pass)
+server {
+    listen 80;
+    server_name example.com;
+    root /var/www/connecthub;
+    index index.php;
+    client_max_body_size 40m;
+
+    location ~ ^/(config|includes|database|storage|app|templates|cron|tools|docs|node_modules)/ { deny all; }
+    location ~* \.(sql|md|log|sh)$ { deny all; }
+    location ~ ^/uploads/.*\.(php|phtml|phar)$ { deny all; }
+    location ~ ^/uploads/photos/.*_[lmt]\.jpg$ { deny all; }   # sharp member photos are served by the app at /media/photo (blurred _b.jpg copies stay public)
+    location ^~ /uploads/messages/ { deny all; }   # private chat photos are served through /messages/media/{id}
+    location ~* \.svg$ { add_header Content-Security-Policy "default-src 'none'; style-src 'unsafe-inline'; sandbox"; try_files $uri =404; }
+
+    location /assets/ { expires 30d; add_header Cache-Control "public"; try_files $uri =404; }
+    location /uploads/ { expires 30d; try_files $uri =404; }
+    location = /sw.js { add_header Cache-Control "no-cache"; try_files /index.php$is_args$args =404; }
+
+    location /install/ { try_files $uri $uri/ /install/index.php?$query_string; location ~ \.php$ { include fastcgi_params; fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name; fastcgi_pass unix:/run/php/php8.3-fpm.sock; } }
+    location / { try_files $uri /index.php?$query_string; }
+    location ~ ^/index\.php$ { include fastcgi_params; fastcgi_param SCRIPT_FILENAME $document_root/index.php; fastcgi_pass unix:/run/php/php8.3-fpm.sock; }
+}
